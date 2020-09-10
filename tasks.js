@@ -26,7 +26,6 @@ console.log(getInactiveUsers(users));
 
 const getUserWithEmail = (users, email) =>
   users.find((user) => user.email === email);
-users.map((user) => user.name);
 
 console.log(getUserWithEmail(users, "shereeanthony@kog.com"));
 console.log(getUserWithEmail(users, "elmahead@omatom.com"));
@@ -46,13 +45,16 @@ console.log(calculateTotalBalance(users));
 
 // Задание 8 – Массив имен всех пользователей у которых есть друг с указанным именем.
 
-const getUsersWithFriend = (users, friendName) =>
-  users.reduce((allfriends, user) => {
-    if (user.friends.find((us) => us === friendName)) {
-      allfriends.push(user.name);
-    }
-    return allfriends;
-  }, []);
+const getUsersWithFriend = (users, friendName) => {
+  return users
+    .filter((user) => {
+      return user.friends.includes(friendName);
+    })
+    .map((user) => {
+      return (user = user.name);
+    });
+};
+
 console.log(getUsersWithFriend(users, "Briana Decker"));
 console.log(getUsersWithFriend(users, "Goldie Gentry"));
 
